@@ -5,11 +5,13 @@ import { useState } from "react";
 import CalendarView from "@/components/CalendarView";
 import SummaryView from "@/components/SummaryView";
 import CategoryManager from "@/components/CategoryManager";
+import AiPlanner from "@/components/AiPlanner";
 
 export default function Home() {
   const user = useUser({ or: "redirect" });
   const [activeView, setActiveView] = useState<"calendar" | "summary">("calendar");
   const [showCategoryManager, setShowCategoryManager] = useState(false);
+  const [showAiPlanner, setShowAiPlanner] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -85,6 +87,12 @@ export default function Home() {
             </button>
             <div className="flex-1" />
             <button
+              onClick={() => setShowAiPlanner(true)}
+              className="px-6 py-2.5 rounded-lg font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+            >
+              AI Planner
+            </button>
+            <button
               onClick={() => setShowCategoryManager(true)}
               className="px-6 py-2.5 rounded-lg font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
             >
@@ -108,6 +116,14 @@ export default function Home() {
         <CategoryManager
           userId={user.id}
           onClose={() => setShowCategoryManager(false)}
+        />
+      )}
+
+      {/* AI Planner Modal */}
+      {showAiPlanner && (
+        <AiPlanner
+          userId={user.id}
+          onClose={() => setShowAiPlanner(false)}
         />
       )}
     </div>
