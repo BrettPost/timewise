@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+convex/_generated/api.d.ts
+convex/_generated/api.js
+convex/_generated/dataModel.d.ts
+convex/_generated/server.d.ts
+convex/_generated/server.js
